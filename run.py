@@ -88,13 +88,38 @@ def setup():
     _save_env(email, password, timezone)
 
 
+def _find_python() -> str:
+    """Find the correct Python executable (prefer .venv, then uv run)."""
+    project_dir = Path(__file__).parent
+    # Check for .venv created by uv sync
+    venv_python = project_dir / ".venv" / "bin" / "python"
+    if not venv_python.exists():
+        # Windows
+        venv_python = project_dir / ".venv" / "Scripts" / "python.exe"
+    if venv_python.exists():
+        return str(venv_python)
+    return sys.executable
+
+
 def launch(days: int = 30):
     """Launch the Streamlit dashboard."""
+    python = _find_python()
+
+    # Check that streamlit is importable from the target python
+    check = subprocess.run(
+        [python, "-c", "import streamlit"],
+        capture_output=True,
+    )
+    if check.returncode != 0:
+        print("  Error: Streamlit is not installed.")
+        print("  Run 'uv sync' first to install dependencies.\n")
+        sys.exit(1)
+
     print(f"  Launching dashboard (last {days} days of data)...")
     print("  Press Ctrl+C to stop.\n")
 
     streamlit_cmd = [
-        sys.executable, "-m", "streamlit", "run", "main.py",
+        python, "-m", "streamlit", "run", "main.py",
         "--server.headless", "true",
         "--browser.gatherUsageStats", "false",
     ]
