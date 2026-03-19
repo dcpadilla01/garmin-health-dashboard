@@ -4,6 +4,8 @@ A personal health dashboard that pulls data from your Garmin watch and displays 
 
 Built with **Streamlit**, **Plotly**, and the [`garminconnect`](https://github.com/cyberjunky/python-garminconnect) Python library.
 
+<video src="assets/garmin_health_dashboard.mp4" width="100%" controls></video>
+
 ## Dashboard Pages
 
 | Page | What it shows |
