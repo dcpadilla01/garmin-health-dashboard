@@ -45,7 +45,7 @@ Verify with: `uv --version`
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/garmin-health-dashboard.git
+git clone https://github.com/dcpadilla01/garmin-health-dashboard.git
 cd garmin-health-dashboard
 ```
 

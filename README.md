@@ -17,7 +17,7 @@ Built with **Streamlit**, **Plotly**, and the [`garminconnect`](https://github.c
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/garmin-health-dashboard.git
+git clone https://github.com/dcpadilla01/garmin-health-dashboard.git
 cd garmin-health-dashboard
 uv sync
 python run.py
