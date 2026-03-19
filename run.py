@@ -47,7 +47,7 @@ def _save_env(email: str, password: str, timezone: str):
 def setup():
     """Interactive first-time setup."""
     print("\n  ╔══════════════════════════════════════╗")
-    print("  ║     Garmin Health Dashboard Setup     ║")
+    print("  ║     Garmin Health Dashboard Setup    ║")
     print("  ╚══════════════════════════════════════╝\n")
 
     existing = _read_env()
