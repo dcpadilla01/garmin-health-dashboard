@@ -33,13 +33,14 @@ def _read_env() -> dict:
     return values
 
 
-def _save_env(email: str, password: str):
-    """Save credentials to .env file."""
+def _save_env(email: str, password: str, timezone: str):
+    """Save credentials and timezone to .env file."""
     ENV_PATH.write_text(
         f'GARMIN_EMAIL="{email}"\n'
         f'GARMIN_PASSWORD="{password}"\n'
+        f'TIMEZONE="{timezone}"\n'
     )
-    print(f"\n  Credentials saved to {ENV_PATH}")
+    print(f"\n  Configuration saved to {ENV_PATH}")
     print("  This file is in .gitignore and will not be shared.\n")
 
 
@@ -70,7 +71,21 @@ def setup():
         print("  Password cannot be empty.")
         password = getpass("  Garmin password: ")
 
-    _save_env(email, password)
+    # Timezone
+    default_tz = existing.get("TIMEZONE", "America/Mexico_City")
+    print(f"\n  Timezone is used for all displayed timestamps.")
+    print(f"  Examples: America/New_York, Europe/London, Asia/Tokyo")
+    tz_input = input(f"  Timezone [{default_tz}]: ").strip()
+    timezone = tz_input or default_tz
+
+    # Validate
+    from zoneinfo import available_timezones
+    while timezone not in available_timezones():
+        print(f"  '{timezone}' is not a valid timezone.")
+        tz_input = input(f"  Timezone [{default_tz}]: ").strip()
+        timezone = tz_input or default_tz
+
+    _save_env(email, password, timezone)
 
 
 def launch(days: int = 30):

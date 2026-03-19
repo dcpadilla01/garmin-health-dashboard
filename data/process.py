@@ -1,13 +1,16 @@
 """Data processing module.
 
 Converts raw Garmin API responses into clean pandas DataFrames
-with proper timezone handling (all times in America/Mexico_City).
+with proper timezone handling. Timezone is read from the TIMEZONE
+environment variable, defaulting to America/Mexico_City.
 """
+
+import os
 
 import pandas as pd
 from zoneinfo import ZoneInfo
 
-TZ = ZoneInfo("America/Mexico_City")
+TZ = ZoneInfo(os.getenv("TIMEZONE", "America/Mexico_City"))
 
 
 def _ts_to_datetime(ts_ms: int | float) -> pd.Timestamp:

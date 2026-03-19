@@ -35,7 +35,7 @@ python run.py --setup
 
 ## Timezone
 
-All timestamps are displayed in **America/Mexico_City** by default. To change this, edit the `TZ` variable in `data/process.py` — see the [Setup Guide](SETUP.md#timezone) for details.
+All timestamps default to **America/Mexico_City**. The CLI asks for your timezone during setup. To change it later, run `python run.py --setup` — see the [Setup Guide](SETUP.md#timezone) for details.
 
 ## Requirements
 

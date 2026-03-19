@@ -69,10 +69,11 @@ def main():
         page = selected_label.split("  ", 1)[1]
 
         # Footer
-        st.markdown("""
+        from data.process import TZ
+        st.markdown(f"""
         <div style="position:fixed; bottom:1rem; padding:0 1rem;
                     color:#475569; font-size:0.7rem">
-            Timezone: America/Mexico City
+            Timezone: {TZ}
         </div>
         """, unsafe_allow_html=True)
 

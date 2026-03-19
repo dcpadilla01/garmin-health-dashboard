@@ -84,29 +84,22 @@ python run.py --setup
 
 ## Timezone
 
-The dashboard defaults to **America/Mexico_City**. All chart timestamps and time-based analysis use this timezone.
+The CLI asks for your timezone during setup. It defaults to **America/Mexico_City**. All chart timestamps and time-based analysis use this setting.
 
-To change it, open `data/process.py` and edit line 10:
-
-```python
-# Before
-TZ = ZoneInfo("America/Mexico_City")
-
-# After — use your timezone
-TZ = ZoneInfo("America/New_York")
-```
-
-That's the only line you need to change — all timestamp conversions flow through it.
-
-You can find your timezone name by running:
+To change it later, run:
 
 ```bash
-python3 -c "import zoneinfo; print(sorted(zoneinfo.available_timezones()))" | tr ',' '\n' | grep -i america
+python run.py --setup
 ```
 
-Common values: `America/New_York`, `America/Chicago`, `America/Denver`, `America/Los_Angeles`, `Europe/London`, `Europe/Berlin`, `Asia/Tokyo`.
+This will re-prompt for your email, password, and timezone. After changing the timezone, delete the `output/` folder so cached data gets reprocessed:
 
-After changing the timezone, delete the `output/` folder and refresh the dashboard so that cached data gets reprocessed with the new timezone.
+```bash
+rm -rf output/
+python run.py
+```
+
+Common timezone values: `America/New_York`, `America/Chicago`, `America/Denver`, `America/Los_Angeles`, `Europe/London`, `Europe/Berlin`, `Asia/Tokyo`.
 
 ## Using the dashboard
 
