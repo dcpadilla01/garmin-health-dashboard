@@ -1,0 +1,20 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Private data
+.env
+output/
+.DS_Store
+
+# Personal notes and exploration
+garmindata.ipynb
+garminconnect_functions.md
+information_flow.md
